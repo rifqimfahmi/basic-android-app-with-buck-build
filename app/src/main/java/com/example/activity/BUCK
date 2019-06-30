@@ -1,0 +1,10 @@
+android_library(
+    name = 'activity',
+    srcs = glob(['*.java']),
+    deps = [
+        '//app:res'
+    ],
+    visibility = [
+        'PUBLIC'
+    ],
+)
