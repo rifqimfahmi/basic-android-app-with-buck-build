@@ -9,8 +9,19 @@ android_binary(
     },
     keystore = ':debug_keystore',
     deps = [
+        '//app:main',
         '//app:res',
-        '//app/src/main/java/com/example/activity:activity',
+    ],
+)
+
+android_library(
+    name = 'main',
+    srcs = ['src/main/java/com/example/activity/MainActivity.java'],
+    deps = [
+        '//app:res'
+    ],
+    visibility = [
+        'PUBLIC'
     ],
 )
 
