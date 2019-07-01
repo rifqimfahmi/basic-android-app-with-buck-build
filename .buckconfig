@@ -1,2 +1,6 @@
 [java]
     src_roots = /app/src/main/java/
+[android]
+    sdk_path = /Users/nakama/Library/Android/sdk/
+    target = Google Inc.:Google APIs:28
+    build_tools_version = 28.0.2

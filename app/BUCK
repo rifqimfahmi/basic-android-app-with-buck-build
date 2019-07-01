@@ -1,3 +1,5 @@
+import re
+
 android_binary(
     name = 'app',
     manifest = 'src/main/AndroidManifest.xml',
@@ -5,7 +7,7 @@ android_binary(
     'version_code': 1,
     'version_name': '1.0',
     'min_sdk_version': 16,
-    'target_sdk_version': 23
+    'target_sdk_version': 28
     },
     keystore = ':debug_keystore',
     deps = [
@@ -18,11 +20,41 @@ android_library(
     name = 'main',
     srcs = glob(['src/main/java/com/example/activity/*.java']),
     deps = [
-        '//app:res'
+        '//app:res',
+        ':all-jars',
+        ':all-aar'
     ],
     visibility = [
         'PUBLIC'
     ],
+)
+
+jar_deps = []
+for jarfile in glob(['lib/*.jar']):
+    name = 'jars__' + re.sub(r'^.*/([^/]+)\.jar$', r'\1', jarfile)
+    jar_deps.append(':' + name)
+    prebuilt_jar(
+        name = name,
+        binary_jar = jarfile
+    )
+
+android_library(
+    name = 'all-jars',
+    exported_deps = jar_deps
+)
+
+aar_deps = []
+for aarfile in glob(['lib/*.aar']):
+    name = 'aars__' + re.sub(r'^.*/([^/]+)\.jar$', r'\1', aarfile)
+    aar_deps.append(':' + name)
+    android_prebuilt_aar(
+        name = name,
+        aar = aarfile
+    )
+
+android_library(
+    name = 'all-aar',
+    exported_deps = aar_deps
 )
 
 android_resource(
