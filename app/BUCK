@@ -16,7 +16,7 @@ android_binary(
 
 android_library(
     name = 'main',
-    srcs = ['src/main/java/com/example/activity/MainActivity.java'],
+    srcs = glob(['src/main/java/com/example/activity/*.java']),
     deps = [
         '//app:res'
     ],
