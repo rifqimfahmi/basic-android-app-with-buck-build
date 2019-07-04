@@ -18,14 +18,34 @@ android_binary(
 
 android_library(
     name = 'main',
-    srcs = glob(['src/main/java/com/example/activity/*.java']),
+    srcs = glob([
+        'src/main/java/com/example/activity/*.java',
+    ]),
     deps = [
         '//app:res',
+        ':all-jars',
+        ':all-aar',
+        ':kotlins'
+    ],
+    visibility = [
+        'PUBLIC'
+    ],
+)
+
+
+
+
+kotlin_library(
+    name = 'kotlins',
+    srcs = glob([
+        'src/main/java/com/example/activity/*.kt',
+    ]),
+    deps = [
         ':all-jars',
         ':all-aar'
     ],
     visibility = [
-        'PUBLIC'
+    'PUBLIC'
     ],
 )
 

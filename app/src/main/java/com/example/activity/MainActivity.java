@@ -17,5 +17,8 @@ public class MainActivity extends Activity {
 
     MainCoroutineDispatcher dispatcher = Dispatchers.getMain();
     Log.d("SOME_DISPATCHERS", dispatcher.toString());
+
+    TestCoroutine coroutine = new TestCoroutine();
+    coroutine.testCoroutine();
   }
 }
